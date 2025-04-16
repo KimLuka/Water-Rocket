@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+  --custom-black: #000000;
+  --custom-gray: #222222;
+  --custom-light-green: #1dcd9f;
+  --custom-dark-green: #169976;
+}
+
+@font-face {
+  font-family: 'Ownglyph';
+  src: url('https://www.ownglyph.com/api/font/bcc3e39c-547e-4300-84d6-f7f54199eb68')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+/* html,
+body {
+  width: 100%;
+} */
+
+html {
+  background-color: #222222;
+  height: 100%;
+}
+
+body {
+  font-family: 'Ownglyph', sans-serif;
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1024px;
+  margin: 0 auto;
+  height: 100vh;
+}
+
+/* * {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+} */
+
+/* a {
+  color: inherit;
+  text-decoration: none;
+} */
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+.text-custom-black {
+  color: var(--custom-black);
+}
+.text-custom-gray {
+  color: var(--custom-gray);
+}
+.text-custom-light-green {
+  color: var(--custom-light-green);
+}
+.text-custom-dark-green {
+  color: var(--custom-dark-green);
+}
+
+.bg-custom-black {
+  background-color: var(--custom-black);
+}
+.bg-custom-gray {
+  background-color: var(--custom-gray);
+}
+.bg-custom-light-green {
+  background-color: var(--custom-light-green);
+}
+.bg-custom-dark-green {
+  background-color: var(--custom-dark-green);
+}
+
+.border-custom-black {
+  border-color: var(--custom-black);
+}
+.border-custom-gray {
+  border-color: var(--custom-gray);
+}
+.border-custom-light-green {
+  border-color: var(--custom-light-green);
+}
+.border-custom-dark-green {
+  border-color: var(--custom-dark-green);
+}
