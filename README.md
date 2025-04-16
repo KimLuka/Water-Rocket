@@ -23,6 +23,7 @@
 
 ## 📁 프로젝트 구조
 
+```plaintext
 /water-rocket
 ├── public/
 │ └── favicon.ico
@@ -73,6 +74,7 @@
 ├── postcss.config.js
 ├── tsconfig.json
 └── package.json
+```
 
 ## 🚧 개발 일정 (MVP)
 
