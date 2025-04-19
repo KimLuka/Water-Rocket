@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500&display=swap');
 
 :root {
   --background: #000000;
@@ -7,27 +8,9 @@
   --custom-gray: #222222;
   --custom-light-green: #1dcd9f;
   --custom-dark-green: #169976;
+  --custom-red: #e52020;
+  --custom-orange: #fba518;
 }
-
-@font-face {
-  font-family: 'Ownglyph';
-  src: url('https://www.ownglyph.com/api/font/bcc3e39c-547e-4300-84d6-f7f54199eb68')
-    format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
-/* html,
-body {
-  width: 100%;
-} */
 
 html {
   background-color: #222222;
@@ -35,26 +18,15 @@ html {
 }
 
 body {
-  font-family: 'Ownglyph', sans-serif;
   color: var(--foreground);
   background: var(--background);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   max-width: 1024px;
   margin: 0 auto;
-  height: 100vh;
+  /* height: 100vh; */
+  font-family: 'IBM Plex Sans KR', sans-serif;
 }
-
-/* * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-} */
-
-/* a {
-  color: inherit;
-  text-decoration: none;
-} */
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -73,6 +45,12 @@ body {
 }
 .text-custom-dark-green {
   color: var(--custom-dark-green);
+}
+.text-custom-red {
+  color: var(--custom-red);
+}
+.text-custom-orange {
+  color: var(--custom-orange);
 }
 
 .bg-custom-black {
@@ -99,4 +77,12 @@ body {
 }
 .border-custom-dark-green {
   border-color: var(--custom-dark-green);
+}
+
+@layer base {
+  input:focus,
+  textarea:focus,
+  button:focus {
+    @apply outline-none;
+  }
 }
