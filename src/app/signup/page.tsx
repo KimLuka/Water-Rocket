@@ -4,10 +4,10 @@ import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input';
 import { isPostgrestError } from '@/lib/errorGuards';
 import { supabase } from '@/lib/supabaseClient';
-import { SignupFormValues } from '@/types/\bauth';
 import { isAuthError } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { User } from '@/types/auth';
 
 const DEFAULT_PROFILE_IMAGE_URL = '/logo/logo.svg';
 
@@ -17,11 +17,11 @@ export default function Signup() {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<SignupFormValues>();
+  } = useForm<User>();
 
   const router = useRouter();
 
-  const onSubmit = async (data: SignupFormValues) => {
+  const onSubmit = async (data: User) => {
     const { email, nickname, password } = data;
 
     try {
@@ -86,21 +86,25 @@ export default function Signup() {
       >
         <FormInput
           inputLabel="이메일"
+          htmlFor="email"
           type="email"
           placeholder="이메일을 입력해주세요"
           required
           patternValue={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
           patternMessage="이메일 형식이 올바르지 않습니다"
           register={register}
+          registerName="email"
           errors={errors}
         />
 
         <FormInput
           inputLabel="닉네임"
-          type="nickname"
+          htmlFor="nickname"
+          type="text"
           placeholder="2자 이상, 12자 이하로 입력해주세요"
           required
           register={register}
+          registerName="nickname"
           minLength
           minLengthValue={2}
           minLengthMessage="닉네임은 최소 2자 이상이어야 합니다"
@@ -112,12 +116,14 @@ export default function Signup() {
 
         <FormInput
           inputLabel="비밀번호"
+          htmlFor="password"
           type="password"
           placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
           required
           patternValue={/^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/}
           patternMessage="8자 이상, 특수문자 1개 이상 포함해주세요"
           register={register}
+          registerName="password"
           errors={errors}
         />
 
@@ -128,6 +134,7 @@ export default function Signup() {
           placeholder="비밀번호를 한 번 더 입력해주세요"
           required
           register={register}
+          registerName="confirmPassword"
           validate={(value) =>
             value === watch('password') || '비밀번호가 일치하지 않습니다'
           }

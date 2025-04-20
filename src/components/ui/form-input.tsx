@@ -28,10 +28,11 @@ type CustomValidation = {
 
 type FormInputProps<T extends FieldValues> = {
   inputLabel: string;
-  htmlFor?: string;
-  type: Path<T>;
+  htmlFor: string;
+  type: string;
   placeholder: string;
   register: UseFormRegister<T>;
+  registerName: Path<T>;
   required: boolean;
   errors: FieldErrors<T>;
 } & PatternValidation &
@@ -44,6 +45,7 @@ export default function FormInput<T extends FieldValues>({
   type,
   placeholder,
   register,
+  registerName,
   required,
   patternValue,
   patternMessage,
@@ -58,15 +60,15 @@ export default function FormInput<T extends FieldValues>({
 }: FormInputProps<T>) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={htmlFor || type} className="text-lg font-bold md:text-xl">
+      <label htmlFor={htmlFor} className="text-lg font-bold md:text-xl">
         {inputLabel}
       </label>
       <input
-        id={htmlFor || type}
+        id={htmlFor}
         type={type}
         placeholder={placeholder}
         className="p-4 text-lg font-bold rounded-lg h-15 border-1 border-custom-dark-green bg-custom-gray md:text-xl"
-        {...register(type, {
+        {...register(registerName, {
           required: required ? '필수 입력 항목입니다' : false,
           pattern:
             patternValue && patternMessage
@@ -92,9 +94,9 @@ export default function FormInput<T extends FieldValues>({
           ...(validate && { validate }),
         })}
       />
-      {errors[type] && (
+      {errors[registerName] && (
         <p className="text-lg text-custom-orange md:text-xl">
-          {errors[type].message as string}
+          {errors[registerName].message as string}
         </p>
       )}
     </div>

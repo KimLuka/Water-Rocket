@@ -3,7 +3,7 @@
 import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input';
 import { supabase } from '@/lib/supabaseClient';
-import { LoginFormValues } from '@/types/\bauth';
+import { User } from '@/types/auth';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -12,11 +12,11 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>();
+  } = useForm<User>();
 
   const router = useRouter();
 
-  const onSubmit = async (data: LoginFormValues) => {
+  const onSubmit = async (data: User) => {
     const { email, password } = data;
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -51,23 +51,27 @@ export default function Login() {
       >
         <FormInput
           inputLabel="이메일"
+          htmlFor="email"
           type="email"
           placeholder="이메일을 입력해주세요"
           required
           patternValue={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
           patternMessage="이메일 형식이 올바르지 않습니다"
           register={register}
+          registerName="email"
           errors={errors}
         />
 
         <FormInput
           inputLabel="비밀번호"
+          htmlFor="password"
           type="password"
           placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
           required
           patternValue={/^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/}
           patternMessage="8자 이상, 특수문자 1개 이상 포함해주세요"
           register={register}
+          registerName="password"
           errors={errors}
         />
 
