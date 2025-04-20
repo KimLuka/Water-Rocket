@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@/styles/globals.css';
 import NavBar from '@/components/layout/nav-bar';
+import AuthProvider from '@/components/auth-provider';
 
 export const metadata: Metadata = {
   title: '물로켓 | 힘차게 날아올라 스리슬쩍 쉬어가는 당신에게',
@@ -49,6 +50,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
+        <AuthProvider />
         <NavBar />
         {children}
       </body>
