@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     title: '물로켓',
     description:
       '금방 추진력을 잃는 당신. 이 링크를 보낸 친구와 함께라면 2단 물로켓이 될 수 있어요.',
-    url: 'https://yourwebsite.com', // 웹사이트 URL
+    url: 'https://water-rocket.vercel.app/', // 웹사이트 URL
     siteName: '물로켓',
     images: [
       {
-        url: 'https://yourwebsite.com/og-image.jpg',
+        url: 'https://water-rocket.vercel.app/og-image.jpg',
         width: 1200,
         height: 630,
         alt: '물로켓 Open Graph Image',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: '물로켓 | 갓생까지는 좀 부담스러운 당신에게', // 트위터 카드 제목
     description:
       '물로켓 3행시: 물렁한 결심, 로그아웃은 이제 그만, 켓으로 시작하는 평범한 단어가 없어요..대신 3행시 해주세요',
-    images: 'https://yourwebsite.com/twitter-card-image.jpg', // 트위터 카드 이미지 (서비스 대표 이미지 또는 로고)
+    images: 'https://water-rocket.vercel.app/twitter-card-image.jpg', // 트위터 카드 이미지 (서비스 대표 이미지 또는 로고)
   },
 
   // 추가 메타 태그 (기본적인 SEO 개선)
