@@ -8,7 +8,9 @@ export default function Button({ type, buttonLabel, className }: ButtonProps) {
   return (
     <button
       type={type}
-      className={`flex justify-center items-center bg-custom-dark-green w-75 p-4 rounded-lg text-lg font-bold md:text-xl md:w-120 md:font-bold ${className}`}
+      className={`inline-flex justify-center items-center 
+        h-10 px-4 py-2 whitespace-nowrap text-sm font-medium
+        transition-colors disabled:pointer-events-none bg-white disabled:opacity-50 rounded-md ${className}`}
     >
       {buttonLabel}
     </button>
