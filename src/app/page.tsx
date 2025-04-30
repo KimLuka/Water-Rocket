@@ -33,7 +33,7 @@ export default function Home() {
                   <Button
                     type="button"
                     buttonLabel="더 알아보기"
-                    className="px-8 border-2 border-custom-gray h-11"
+                    className="px-8 border border-custom-gray h-11"
                   />
                 </Link>
               </div>
@@ -45,11 +45,11 @@ export default function Home() {
             <div className="container">
               <div className="grid gap-16 md:gap-24">
                 {/* 할 일 관리 */}
-                <div className="grid gap-8 md:grid-cols-2 md:items-center">
+                <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-24">
                   <div className="order-2 md:order-1">
                     <div className="flex items-center gap-2 text-custom-light-green">
                       <CheckIcon className="w-6 h-6" />
-                      <h2 className="text-2xl font-bold">
+                      <h2 className="text-xl font-bold md:text-2xl">
                         할 일 정하고 실천해요
                       </h2>
                     </div>
@@ -62,23 +62,23 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex justify-center order-1 md:order-2">
-                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green opacity-10">
+                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green-10">
                       <CheckIcon className="w-24 h-24 text-custom-light-green opacity-40" />
                     </div>
                   </div>
                 </div>
 
                 {/* 로켓 업그레이드 */}
-                <div className="grid gap-8 md:grid-cols-2 md:items-center">
+                <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-24">
                   <div className="flex justify-center md:order-1">
-                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green opacity-10">
+                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green-10">
                       <ZapIcon className="w-24 h-24 text-custom-light-green opacity-40" />
                     </div>
                   </div>
                   <div className="md:order-2">
                     <div className="flex items-center gap-2 text-custom-light-green">
                       <ZapIcon className="w-6 h-6" />
-                      <h2 className="text-2xl font-bold">
+                      <h2 className="text-xl font-bold md:text-2xl">
                         실천할 때마다 업그레이드 되는 로켓
                       </h2>
                     </div>
@@ -91,11 +91,11 @@ export default function Home() {
                 </div>
 
                 {/* 미션 */}
-                <div className="grid gap-8 md:grid-cols-2 md:items-center">
+                <div className="grid gap-8 md:grid-cols-2 md:items-center md:gap-24">
                   <div className="order-2 md:order-1">
-                    <div className="container flex items-center gap-2 text-custom-light-green">
+                    <div className="flex items-center gap-2 text-custom-light-green">
                       <TargetIcon className="w-6 h-6" />
-                      <h2 className="text-2xl font-bold">
+                      <h2 className="text-xl font-bold md:text-2xl">
                         친구에게 미션을 보내봐요
                       </h2>
                     </div>
@@ -106,7 +106,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex justify-center order-1 md:order-2">
-                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green opacity-10">
+                    <div className="relative flex items-center justify-center w-64 h-64 p-6 rounded-xl bg-custom-light-green-10">
                       <TargetIcon className="w-24 h-24 text-custom-light-green opacity-40" />
                     </div>
                   </div>

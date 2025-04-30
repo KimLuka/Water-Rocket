@@ -4,6 +4,7 @@ import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input';
 import { supabase } from '@/lib/supabaseClient';
 import { User } from '@/types/auth';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
@@ -76,6 +77,15 @@ export default function Login() {
         />
 
         <Button type="submit" buttonLabel="로그인" />
+        <div className="text-sm text-center">
+          계정이 없으신가요?{' '}
+          <Link
+            href="/signup"
+            className="text-custom-light-green hover:underline"
+          >
+            회원가입
+          </Link>
+        </div>
         {/* <Button type="button" buttonLabel="이메일로 로그인" /> */}
       </form>
     </div>

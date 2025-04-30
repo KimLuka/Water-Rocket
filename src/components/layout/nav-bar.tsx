@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <header>
-      <nav className="container sticky top-0 left-0 flex items-center justify-between h-16 px-4 border-b-2 border-custom-gray z-999 md:px-7">
+      <nav className="container sticky top-0 left-0 flex items-center justify-between h-16 px-4 border-b border-custom-gray z-999 md:px-7">
         <Link
           href="/"
           aria-label="홈페이지"
@@ -55,16 +55,16 @@ export default function NavBar() {
             <>
               <li>
                 <Link href="/login">
-                  <Button type="button" buttonLabel="로그인" />
+                  <Button
+                    type="button"
+                    buttonLabel="로그인"
+                    className="bg-white"
+                  />
                 </Link>
               </li>
               <li>
                 <Link href="/signup">
-                  <Button
-                    type="button"
-                    buttonLabel="회원가입"
-                    className="text-white bg-custom-light-green"
-                  />
+                  <Button type="button" buttonLabel="회원가입" />
                 </Link>
               </li>
             </>

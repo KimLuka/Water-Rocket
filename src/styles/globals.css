@@ -1,30 +1,39 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-@layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #000000;
-    --card: #ffffff;
-    --card-foreground: #000000;
-    --popover: #ffffff;
-    --popover-foreground: #000000;
-    --primary: #1dcd9f; /* --custom-light-green */
-    --primary-foreground: #ffffff;
-    --secondary: #f5f5f5; /* --custom-light-gray */
-    --secondary-foreground: #171717; /* --custom-dark-gray */
-    --muted: #f5f5f5; /* --custom-light-gray */
-    --muted-foreground: #737373;
-    --accent: #f5f5f5; /* --custom-light-gray */
-    --accent-foreground: #171717; /* --custom-dark-gray */
-    --destructive: #e52020; /* --custom-red */
-    --destructive-foreground: #fafafa;
-    --border: #e5e5e5;
-    --input: #e5e5e5;
-    --ring: #1dcd9f; /* --custom-light-green */
-    --radius: 0.5rem;
-  }
+@theme {
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #1dcd9f;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #171717;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --destructive: #e52020;
+  --destructive-foreground: #fafafa;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #1dcd9f;
+  --radius: 0.5rem;
 
+  /* Custom Colors */
+  --color-custom-black: #000000;
+  --color-custom-gray: #e5e5e5;
+  --color-custom-light-green: #1dcd9f;
+  --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
+  --color-custom-dark-green: #169976;
+  --color-custom-red: #e52020;
+  --color-custom-orange: #fba518;
+}
+
+@layer base {
   .dark {
     --background: #0a0a0a;
     --foreground: #fafafa;
@@ -32,19 +41,28 @@
     --card-foreground: #fafafa;
     --popover: #0a0a0a;
     --popover-foreground: #fafafa;
-    --primary: #1dcd9f; /* --custom-light-green */
+    --primary: #1dcd9f;
     --primary-foreground: #ffffff;
-    --secondary: #262626; /* --custom-dark-gray */
+    --secondary: #262626;
     --secondary-foreground: #fafafa;
-    --muted: #262626; /* --custom-dark-gray */
+    --muted: #262626;
     --muted-foreground: #a3a3a3;
-    --accent: #262626; /* --custom-dark-gray */
-    --accent-foreground: #fafafa; /* --custom-light-foreground */
-    --destructive: #e52020; /* --custom-red */
+    --accent: #262626;
+    --accent-foreground: #fafafa;
+    --destructive: #e52020;
     --destructive-foreground: #fafafa;
     --border: #262626;
     --input: #262626;
-    --ring: #1dcd9f; /* --custom-light-green */
+    --ring: #1dcd9f;
+
+    /* Custom Colors */
+    --color-custom-black: #000000;
+    --color-custom-gray: #e5e5e5;
+    --color-custom-light-green: #1dcd9f;
+    --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
+    --color-custom-dark-green: #169976;
+    --color-custom-red: #e52020;
+    --color-custom-orange: #fba518;
   }
 }
 
@@ -72,58 +90,6 @@ body {
 }
 
 @layer utilities {
-  .text-custom-light-green {
-    color: var(--primary); /* --primary -> #1dcd9f */
-  }
-
-  .text-custom-dark-green {
-    color: var(--secondary); /* --secondary -> #f5f5f5 */
-  }
-
-  .text-custom-red {
-    color: var(--destructive); /* --destructive -> #e52020 */
-  }
-
-  .text-custom-black {
-    color: var(--foreground); /* --foreground -> #000000 */
-  }
-
-  .bg-custom-light-green {
-    background-color: var(--primary); /* --primary -> #1dcd9f */
-  }
-
-  .bg-custom-dark-green {
-    background-color: var(--secondary); /* --secondary -> #f5f5f5 */
-  }
-
-  .bg-custom-red {
-    background-color: var(--destructive); /* --destructive -> #e52020 */
-  }
-
-  .bg-custom-black {
-    background-color: var(--background); /* --background -> #ffffff */
-  }
-
-  .border-custom-light-green {
-    border-color: var(--primary); /* --primary -> #1dcd9f */
-  }
-
-  .border-custom-dark-green {
-    border-color: var(--secondary); /* --secondary -> #f5f5f5 */
-  }
-
-  .border-custom-red {
-    border-color: var(--destructive); /* --destructive -> #e52020 */
-  }
-
-  .border-custom-gray {
-    border-color: var(--muted); /* --destructive -> #e52020 */
-  }
-
-  .border-custom-black {
-    border-color: var(--foreground); /* --foreground -> #000000 */
-  }
-
   .bg-gradient-custom {
     background: linear-gradient(
       to bottom,
