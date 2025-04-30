@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-50">
-      <nav className="flex items-center justify-between h-16 px-4 bg-transparent md:px-7">
+      <nav className="flex items-center justify-between h-16 px-4 bg-transparent md:px-7 dark:bg-custom-navy">
         <Link
           href="/"
           aria-label="홈페이지"
@@ -57,7 +57,7 @@ export default function NavBar() {
                 <Link href="/login">
                   <Button
                     variant="outline"
-                    className="border-none bg-none"
+                    className="bg-transparent border-none dark:text-white dark:bg-transparent"
                     size="sm"
                   >
                     로그인
@@ -66,7 +66,11 @@ export default function NavBar() {
               </li>
               <li>
                 <Link href="/signup">
-                  <Button variant="outline" size="sm">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="dark:text-white dark:bg-black dark:border dark:border-custom-gray"
+                  >
                     회원가입
                   </Button>
                 </Link>

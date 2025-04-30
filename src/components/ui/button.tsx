@@ -20,8 +20,8 @@ export default function Button({
     'inline-flex justify-center items-center rounded whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2',
 
     // 버튼 크기 (size)
-    size === 'sm' && 'h-8 px-3 py-4.25 text-sm font-semibold',
-    size === 'md' && 'h-10 px-5 py-5 text-md font-semibold',
+    size === 'sm' && 'h-9 px-3 py-4.25 text-sm font-semibold',
+    size === 'md' && 'h-10 px-4 py-5 text-md font-semibold',
     size === 'lg' && 'h-12 px-8 py-8 text-lg font-semibold',
 
     // 버튼 변형 (variant)
