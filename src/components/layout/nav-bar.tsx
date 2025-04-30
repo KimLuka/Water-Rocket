@@ -24,8 +24,8 @@ export default function NavBar() {
   };
 
   return (
-    <header>
-      <nav className="container sticky top-0 left-0 flex items-center justify-between h-16 px-4 border-b border-custom-gray z-999 md:px-7">
+    <header className="sticky top-0 z-50">
+      <nav className="flex items-center justify-between h-16 px-4 bg-transparent md:px-7">
         <Link
           href="/"
           aria-label="홈페이지"
@@ -34,7 +34,7 @@ export default function NavBar() {
           <RocketIcon className="w-6 h-6 text-custom-light-green" />
           <span className="text-xl font-bold">물로켓</span>
         </Link>
-        <ul className="flex gap-5 font-bold text-md md:text-lg">
+        <ul className="flex gap-2 font-bold text-md md:text-lg">
           {user ? (
             <>
               {/* <li>
@@ -56,15 +56,19 @@ export default function NavBar() {
               <li>
                 <Link href="/login">
                   <Button
-                    type="button"
-                    buttonLabel="로그인"
-                    className="bg-white"
-                  />
+                    variant="outline"
+                    className="border-none bg-none"
+                    size="sm"
+                  >
+                    로그인
+                  </Button>
                 </Link>
               </li>
               <li>
                 <Link href="/signup">
-                  <Button type="button" buttonLabel="회원가입" />
+                  <Button variant="outline" size="sm">
+                    회원가입
+                  </Button>
                 </Link>
               </li>
             </>

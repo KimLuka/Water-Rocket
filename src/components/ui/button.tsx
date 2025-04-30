@@ -1,5 +1,5 @@
 type ButtonProps = {
-  type: 'submit' | 'reset' | 'button' | undefined;
+  type?: 'submit' | 'reset' | 'button' | undefined;
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
@@ -8,7 +8,7 @@ type ButtonProps = {
 };
 
 export default function Button({
-  type,
+  type = 'button',
   children,
   variant = 'primary',
   size = 'md',
@@ -17,12 +17,12 @@ export default function Button({
 }: ButtonProps) {
   const classArray = [
     // 기본 스타일
-    'inline-flex justify-center items-center rounded-md font-medium whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2',
+    'inline-flex justify-center items-center rounded whitespace-nowrap transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2',
 
     // 버튼 크기 (size)
-    size === 'sm' && 'h-8 px-3 text-sm',
-    size === 'md' && 'h-10 px-4 py-2 text-md',
-    size === 'lg' && 'h-12 px-8 text-lg',
+    size === 'sm' && 'h-8 px-3 py-4.25 text-sm font-semibold',
+    size === 'md' && 'h-10 px-5 py-5 text-md font-semibold',
+    size === 'lg' && 'h-12 px-8 py-8 text-lg font-semibold',
 
     // 버튼 변형 (variant)
     variant === 'primary' &&
@@ -34,12 +34,14 @@ export default function Button({
 
     // 비활성화 상태
     isDisabled && 'opacity-50 cursor-not-allowed pointer-events-none',
-
-    className,
   ];
 
   // filter로 falsy 값 제거 후 join으로 문자열로 변환
-  const buttonClasses = classArray.filter(Boolean).join(' ');
+  const buttonClasses = [...classArray.filter(Boolean), className]
+    .filter(Boolean)
+    .join(' ');
+
+  console.log('buttonClasses:', className);
 
   return (
     <button type={type} className={buttonClasses}>
