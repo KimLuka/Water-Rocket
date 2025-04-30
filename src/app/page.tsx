@@ -23,18 +23,12 @@ export default function Home() {
               </div>
               <div className="flex flex-col gap-4 mt-10 sm:flex-row">
                 <Link href="/signup">
-                  <Button
-                    type="button"
-                    buttonLabel="시작하기"
-                    className="px-8 text-white bg-custom-light-green h-11 hover:bg-custom-dark-green"
-                  />
+                  <Button type="button" variant="secondary" size="lg">
+                    시작하기
+                  </Button>
                 </Link>
                 <Link href="/about">
-                  <Button
-                    type="button"
-                    buttonLabel="더 알아보기"
-                    className="px-8 border border-custom-gray h-11"
-                  />
+                  <Button type="button">더 알아보기</Button>
                 </Link>
               </div>
             </div>
@@ -124,11 +118,7 @@ export default function Home() {
               </p>
               <div className="mt-8">
                 <Link href="/signup">
-                  <Button
-                    type="button"
-                    buttonLabel="내 로켓 만들어보기"
-                    className="text-white bg-custom-light-green hover:bg-custom-dark-green"
-                  />
+                  <Button type="button">내 로켓 만들어보기</Button>
                 </Link>
               </div>
             </div>
