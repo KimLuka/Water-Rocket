@@ -141,7 +141,7 @@ export default function Signup() {
           errors={errors}
         />
 
-        <Button type="submit" buttonLabel="회원가입" />
+        <Button type="submit">회원가입</Button>
         {/* <Button
           type="button"
           buttonLabel="이메일로 회원가입"
