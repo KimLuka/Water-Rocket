@@ -1,5 +1,4 @@
-type ButtonProps = {
-  type?: 'submit' | 'reset' | 'button' | undefined;
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
   variant?: 'primary' | 'secondary' | 'outline';
   size?: 'sm' | 'md' | 'lg';
@@ -14,6 +13,7 @@ export default function Button({
   size = 'md',
   isDisabled = false,
   className,
+  onClick,
 }: ButtonProps) {
   const classArray = [
     // 기본 스타일
@@ -44,7 +44,7 @@ export default function Button({
   console.log('buttonClasses:', className);
 
   return (
-    <button type={type} className={buttonClasses}>
+    <button type={type} className={buttonClasses} onClick={onClick}>
       {children}
     </button>
   );

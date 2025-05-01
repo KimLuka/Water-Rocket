@@ -3,6 +3,8 @@ import Button from '@/components/ui/button';
 import Footer from '@/components/layout/footer';
 import NavBar from '@/components/layout/nav-bar';
 import FloatingIcons from '@/components/home/floating-icons';
+import OverviewSection from '@/components/home/overview-section';
+import ScrollToOverviewButton from '@/components/home/scroll-to-overview-button';
 
 export default function Home() {
   return (
@@ -21,22 +23,15 @@ export default function Home() {
                   다시 추진력이 되어주는 물로켓
                 </h1>
 
-                {/* <p>작은 실천이 쌓이면, 결국 로켓이 날아가요</p>
-                <p>할 일을 기록하고, 실천하고, 보상 받는 경험</p>
-                <p>망해도 돼요, 물로켓은 여러 번 쏠 수 있으니까요</p> */}
-
                 <div className="z-10 flex gap-4">
                   <Button className="rounded-full">바로 시작하기</Button>
-                  <Button
-                    variant="secondary"
-                    className="border-none rounded-full"
-                  >
-                    더 알아보기
-                  </Button>
+                  <ScrollToOverviewButton />
                 </div>
               </div>
 
               <FloatingIcons />
+
+              <OverviewSection />
             </div>
           </section>
         </main>
