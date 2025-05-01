@@ -25,12 +25,28 @@
 
   /* Custom Colors */
   --color-custom-black: #000000;
-  --color-custom-gray: #e5e5e5;
+  --color-custom-light-gray: #e5e5e5;
+  --color-custom-dark-gray: #4b5563;
   --color-custom-light-green: #1dcd9f;
   --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
   --color-custom-dark-green: #169976;
   --color-custom-red: #e52020;
   --color-custom-orange: #fba518;
+  --color-custom-navy: #111827;
+
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
 }
 
 @layer base {
@@ -57,12 +73,16 @@
 
     /* Custom Colors */
     --color-custom-black: #000000;
-    --color-custom-gray: #e5e5e5;
+    --color-custom-light-gray: #e5e5e5;
+    --color-custom-dark-gray: #4b5563;
     --color-custom-light-green: #1dcd9f;
     --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
     --color-custom-dark-green: #169976;
     --color-custom-red: #e52020;
     --color-custom-orange: #fba518;
+  }
+  body {
+    @apply font-medium;
   }
 }
 
@@ -84,42 +104,38 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+  :root {
+    --background: #0a0a0a;
+    --foreground: #fafafa;
+    --card: #0a0a0a;
+    --card-foreground: #fafafa;
+    --popover: #0a0a0a;
+    --popover-foreground: #fafafa;
+    --primary: #1dcd9f;
+    --primary-foreground: #ffffff;
+    --secondary: #262626;
+    --secondary-foreground: #fafafa;
+    --muted: #262626;
+    --muted-foreground: #a3a3a3;
+    --accent: #262626;
+    --accent-foreground: #fafafa;
+    --destructive: #e52020;
+    --destructive-foreground: #fafafa;
+    --border: #262626;
+    --input: #262626;
+    --ring: #1dcd9f;
   }
 }
 
 @layer utilities {
   .bg-gradient-custom {
-    background: linear-gradient(
-      to bottom,
-      rgba(29, 205, 159, 0.1),
-      rgba(255, 255, 255, 1)
-    );
+    background: linear-gradient(to bottom, #ffffff, #dbeafe);
   }
 
-  .dark .bg-gradient-custom {
-    background: linear-gradient(
-      to bottom,
-      rgba(29, 205, 159, 0.2),
-      rgba(10, 10, 10, 1)
-    );
-  }
-
-  .bg-gradient-custom-reverse {
-    background: linear-gradient(
-      to top,
-      rgba(29, 205, 159, 0.1),
-      rgba(255, 255, 255, 1)
-    );
-  }
-
-  .dark .bg-gradient-custom-reverse {
-    background: linear-gradient(
-      to top,
-      rgba(29, 205, 159, 0.2),
-      rgba(10, 10, 10, 1)
-    );
+  @media (prefers-color-scheme: dark) {
+    .bg-gradient-custom {
+      background: linear-gradient(to bottom, #111827, #1f2937);
+    }
   }
 
   .container {
