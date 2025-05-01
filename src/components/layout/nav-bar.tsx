@@ -69,7 +69,7 @@ export default function NavBar() {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="dark:text-white dark:bg-black dark:border dark:border-custom-gray"
+                    className="dark:text-white dark:bg-black dark:border dark:border-custom-light-gray"
                   >
                     회원가입
                   </Button>

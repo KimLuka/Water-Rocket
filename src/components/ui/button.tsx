@@ -28,9 +28,9 @@ export default function Button({
     variant === 'primary' &&
       'text-white bg-custom-light-green hover:bg-custom-dark-green',
     variant === 'secondary' &&
-      'text-custom-light-green bg-white border border-custom-gray hover:bg-custom-gray',
+      'text-custom-light-green bg-white border border-custom-light-gray hover:bg-custom-light-gray',
     variant === 'outline' &&
-      'bg-white border border-custom-gray hover:bg-custom-gray',
+      'bg-white border border-custom-light-gray hover:bg-custom-light-gray',
 
     // 비활성화 상태
     isDisabled && 'opacity-50 cursor-not-allowed pointer-events-none',

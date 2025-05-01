@@ -67,7 +67,7 @@ export default function FormInput<T extends FieldValues>({
         id={htmlFor}
         type={type}
         placeholder={placeholder}
-        className="p-4 text-lg font-bold rounded-lg h-15 border-1 border-custom-dark-green bg-custom-gray md:text-xl"
+        className="p-4 text-lg font-bold rounded-lg h-15 border-1 border-custom-dark-green bg-custom-light-gray md:text-xl"
         {...register(registerName, {
           required: required ? '필수 입력 항목입니다' : false,
           pattern:

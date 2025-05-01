@@ -25,7 +25,8 @@
 
   /* Custom Colors */
   --color-custom-black: #000000;
-  --color-custom-gray: #e5e5e5;
+  --color-custom-light-gray: #e5e5e5;
+  --color-custom-dark-gray: #4b5563;
   --color-custom-light-green: #1dcd9f;
   --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
   --color-custom-dark-green: #169976;
@@ -72,12 +73,16 @@
 
     /* Custom Colors */
     --color-custom-black: #000000;
-    --color-custom-gray: #e5e5e5;
+    --color-custom-light-gray: #e5e5e5;
+    --color-custom-dark-gray: #4b5563;
     --color-custom-light-green: #1dcd9f;
     --color-custom-light-green-10: rgba(29, 205, 159, 0.1);
     --color-custom-dark-green: #169976;
     --color-custom-red: #e52020;
     --color-custom-orange: #fba518;
+  }
+  body {
+    @apply font-medium;
   }
 }
 
