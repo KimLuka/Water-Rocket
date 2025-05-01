@@ -76,7 +76,7 @@ export default function Login() {
           errors={errors}
         />
 
-        <Button type="submit" buttonLabel="로그인" />
+        <Button type="submit">로그인</Button>
         <div className="text-sm text-center">
           계정이 없으신가요?{' '}
           <Link
