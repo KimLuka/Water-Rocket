@@ -14,7 +14,7 @@
 
 - **Frontend:** `JavaScript(ES6+)` `TypeScript` `React` `Next.js`
 - **Backend:** `Supabase`(Auth, Database, Storage)
-- **State Management & Data Fetching** : `Zustand` `React Context API`
+- **State Management & Data Fetching** : `Zustand`
 - **Styling** : `HTML` `CSS` `TailwindCSS`
 - **Code Quality & Formatting** : `ESLint` `Prettier`
 - **Version Control & Collaboration** : `Git` `GitHub`
