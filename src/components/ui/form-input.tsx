@@ -60,14 +60,14 @@ export default function FormInput<T extends FieldValues>({
 }: FormInputProps<T>) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={htmlFor} className="text-lg font-bold md:text-xl">
+      <label htmlFor={htmlFor} className="text-sm font-bold">
         {inputLabel}
       </label>
       <input
         id={htmlFor}
         type={type}
         placeholder={placeholder}
-        className="p-4 text-lg font-bold rounded-lg h-15 border-1 border-custom-dark-green bg-custom-light-gray md:text-xl"
+        className="flex w-full h-10 px-3 py-2 text-sm border rounded-md border-custom-light-gray shadow-2xs focus-visible:ring-2 focus-visible:ring-custom-light-green disabled:cursor-not-allowed disabled:opacity-50"
         {...register(registerName, {
           required: required ? '필수 입력 항목입니다' : false,
           pattern:
@@ -95,7 +95,7 @@ export default function FormInput<T extends FieldValues>({
         })}
       />
       {errors[registerName] && (
-        <p className="text-lg text-custom-orange md:text-xl">
+        <p className="text-sm text-custom-dark-green">
           {errors[registerName].message as string}
         </p>
       )}

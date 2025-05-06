@@ -13,7 +13,6 @@ export default function Button({
   size = 'md',
   isDisabled = false,
   className,
-  onClick,
 }: ButtonProps) {
   const classArray = [
     // 기본 스타일
@@ -41,10 +40,8 @@ export default function Button({
     .filter(Boolean)
     .join(' ');
 
-  console.log('buttonClasses:', className);
-
   return (
-    <button type={type} className={buttonClasses} onClick={onClick}>
+    <button type={type} className={buttonClasses}>
       {children}
     </button>
   );

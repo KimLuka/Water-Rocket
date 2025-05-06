@@ -1,11 +1,11 @@
 'use client';
 
+import FormField from '@/components/common/form-field';
 import Button from '@/components/ui/button';
-import FormInput from '@/components/ui/form-input';
-import { supabase } from '@/lib/supabaseClient';
+import { useLogin } from '@/hooks/useLogin';
 import { User } from '@/types/auth';
+import { RocketIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
@@ -13,81 +13,95 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({ mode: 'all' });
 
-  const router = useRouter();
+  const login = useLogin();
 
-  const onSubmit = async (data: User) => {
-    const { email, password } = data;
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      switch (error.code) {
-        case 'invalid_credentials':
-          alert('잘못된 이메일 또는 비밀번호입니다.');
-          break;
-        case 'email_not_verified':
-          alert('이메일을 확인해주세요.');
-          break;
-        default:
-          alert('로그인 실패: ' + (error.message || '알 수 없는 오류'));
-          break;
-      }
-    } else {
-      console.log('로그인 성공!');
-      router.push('/');
-    }
+  const onSubmit = (data: User) => {
+    login(data.email, data.password);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] gap-4 md:gap-6">
-      <h1 className="text-4xl font-bold md:text-5xl md:mb-2">🛫 로그인</h1>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Link
+        href="/"
+        aria-label="로고, 홈페이지 이동 링크"
+        className="flex items-center justify-center gap-2 pb-8"
+      >
+        <RocketIcon className="w-10 h-10 text-custom-light-green" />
+        <span className="text-4xl font-bold">물로켓</span>
+      </Link>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
       >
-        <FormInput
-          inputLabel="이메일"
-          htmlFor="email"
-          type="email"
-          placeholder="이메일을 입력해주세요"
-          required
-          patternValue={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
-          patternMessage="이메일 형식이 올바르지 않습니다"
-          register={register}
-          registerName="email"
-          errors={errors}
-        />
-
-        <FormInput
-          inputLabel="비밀번호"
-          htmlFor="password"
-          type="password"
-          placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
-          required
-          patternValue={/^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/}
-          patternMessage="8자 이상, 특수문자 1개 이상 포함해주세요"
-          register={register}
-          registerName="password"
-          errors={errors}
-        />
-
-        <Button type="submit">로그인</Button>
-        <div className="text-sm text-center">
-          계정이 없으신가요?{' '}
-          <Link
-            href="/signup"
-            className="text-custom-light-green hover:underline"
-          >
-            회원가입
-          </Link>
+        <div className="flex flex-col gap-2">
+          <FormField id="email">
+            <FormField.Label className="text-sm font-bold">
+              이메일
+            </FormField.Label>
+            <FormField.Input
+              placeholder="이메일을 입력해주세요"
+              type="email"
+              className="input-base"
+              {...register('email', {
+                required: '이메일은 필수 입력 항목입니다',
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: '이메일 형식이 올바르지 않습니다',
+                },
+              })}
+            />
+            <FormField.ErrorMessage
+              message={errors.email?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
         </div>
-        {/* <Button type="button" buttonLabel="이메일로 로그인" /> */}
+
+        <div className="flex flex-col gap-2">
+          <FormField id="email">
+            <FormField.Label htmlFor="password" className="text-sm font-bold">
+              비밀번호
+            </FormField.Label>
+            <FormField.Input
+              id="password"
+              aria-describedby="password-desc"
+              placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
+              type="password"
+              className="input-base"
+              {...register('password', {
+                required: '비밀번호는 필수 입력 항목입니다',
+                pattern: {
+                  value: /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+                  message: '8자 이상, 특수문자 1개 이상 포함해주세요',
+                },
+              })}
+            />
+            <FormField.Description
+              description="8자 이상, 특수문자 1개 이상 포함해주세요"
+              className="sr-only"
+            />
+
+            <FormField.ErrorMessage
+              message={errors.password?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
+        </div>
+        <Button type="submit">로그인</Button>
       </form>
+
+      <div className="mt-4 text-sm text-center">
+        계정이 없으신가요?{' '}
+        <Link
+          href="/signup"
+          className="text-custom-light-green hover:underline"
+        >
+          회원가입
+        </Link>
+      </div>
     </div>
   );
 }
