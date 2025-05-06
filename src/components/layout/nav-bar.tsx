@@ -2,10 +2,10 @@
 
 import { supabase } from '@/lib/supabaseClient';
 import { useAuthStore } from '@/store/authStore';
-import { RocketIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Button from '../ui/button';
+import { RocketIcon } from 'lucide-react';
 
 export default function NavBar() {
   const { user, removeUser } = useAuthStore();
@@ -28,7 +28,7 @@ export default function NavBar() {
       <nav className="flex items-center justify-between h-16 px-4 bg-transparent md:px-7 dark:bg-custom-navy">
         <Link
           href="/"
-          aria-label="홈페이지"
+          aria-label="로고, 홈페이지 이동 링크"
           className="flex items-center gap-2"
         >
           <RocketIcon className="w-6 h-6 text-custom-light-green" />

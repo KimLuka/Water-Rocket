@@ -4,6 +4,7 @@ import Button from '@/components/ui/button';
 import FormInput from '@/components/ui/form-input';
 import { supabase } from '@/lib/supabaseClient';
 import { User } from '@/types/auth';
+import { RocketIcon } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -13,7 +14,7 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({ mode: 'onChange' });
 
   const router = useRouter();
 
@@ -44,8 +45,16 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] gap-4 md:gap-6">
-      <h1 className="text-4xl font-bold md:text-5xl md:mb-2">🛫 로그인</h1>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Link
+        href="/"
+        aria-label="로고, 홈페이지 이동 링크"
+        className="flex items-center justify-center gap-2 pb-8"
+      >
+        <RocketIcon className="w-10 h-10 text-custom-light-green" />
+        <span className="text-4xl font-bold">물로켓</span>
+      </Link>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
@@ -56,7 +65,7 @@ export default function Login() {
           type="email"
           placeholder="이메일을 입력해주세요"
           required
-          patternValue={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
+          patternValue={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/}
           patternMessage="이메일 형식이 올바르지 않습니다"
           register={register}
           registerName="email"
@@ -77,17 +86,16 @@ export default function Login() {
         />
 
         <Button type="submit">로그인</Button>
-        <div className="text-sm text-center">
-          계정이 없으신가요?{' '}
-          <Link
-            href="/signup"
-            className="text-custom-light-green hover:underline"
-          >
-            회원가입
-          </Link>
-        </div>
-        {/* <Button type="button" buttonLabel="이메일로 로그인" /> */}
       </form>
+      <div className="mt-4 text-sm text-center">
+        계정이 없으신가요?{' '}
+        <Link
+          href="/signup"
+          className="text-custom-light-green hover:underline"
+        >
+          회원가입
+        </Link>
+      </div>
     </div>
   );
 }

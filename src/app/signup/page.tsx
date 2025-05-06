@@ -8,6 +8,10 @@ import { isAuthError } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { User } from '@/types/auth';
+import Link from 'next/link';
+import { RocketIcon } from 'lucide-react';
+// import { useEffect } from 'react';
+// import { useDebounce } from 'use-debounce';
 
 const DEFAULT_PROFILE_IMAGE_URL = '/logo/logo.svg';
 
@@ -16,8 +20,56 @@ export default function Signup() {
     register,
     handleSubmit,
     watch,
+    // setError,
+    // clearErrors,
     formState: { errors },
-  } = useForm<User>();
+  } = useForm<User>({ mode: 'onChange' });
+
+  // const nickname = watch('nickname');
+  // const [debouncedNickname] = useDebounce(nickname, 500);
+
+  // const checkDuplicate = async (debouncedNickname: string) => {
+  //   const { data } = await supabase
+  //     .from('users')
+  //     .select('nickname')
+  //     .eq('nickname', debouncedNickname)
+  //     .single();
+
+  //   return data && data.length > 0;
+  // };
+
+  // const checkDuplicate = async (debouncedNickname: string) => {
+  //   const { data } = await supabase
+  //     .from('users')
+  //     .select('nickname')
+  //     .eq('nickname', debouncedNickname)
+  //     .single();
+
+  //   return data && data.length > 0;
+  // };
+
+  // useEffect(() => {
+  //   if (
+  //     !debouncedNickname ||
+  //     debouncedNickname.length < 2 ||
+  //     debouncedNickname.length > 12
+  //   )
+  //     return;
+
+  //   const checkNickname = async () => {
+  //     const isDuplicate = await checkDuplicate(debouncedNickname);
+
+  //     if (isDuplicate) {
+  //       setError('nickname', {
+  //         type: 'manual',
+  //         message: '이미 사용 중인 닉네임입니다',
+  //       });
+  //     } else {
+  //       clearErrors('nickname');
+  //     }
+  //   };
+  //   checkNickname();
+  // }, [debouncedNickname, setError, clearErrors]);
 
   const router = useRouter();
 
@@ -78,8 +130,15 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-[calc(100vh-80px)] gap-4 md:gap-6">
-      <h1 className="text-4xl font-bold md:text-5xl md:mb-2">👋🏻 회원가입</h1>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <Link
+        href="/"
+        aria-label="로고, 홈페이지 이동 링크"
+        className="flex items-center justify-center gap-2 pb-8"
+      >
+        <RocketIcon className="w-10 h-10 text-custom-light-green" />
+        <span className="text-4xl font-bold">물로켓</span>
+      </Link>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
@@ -90,7 +149,7 @@ export default function Signup() {
           type="email"
           placeholder="이메일을 입력해주세요"
           required
-          patternValue={/^[^\s@]+@[^\s@]+\.[^\s@]+$/}
+          patternValue={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/}
           patternMessage="이메일 형식이 올바르지 않습니다"
           register={register}
           registerName="email"
@@ -142,11 +201,13 @@ export default function Signup() {
         />
 
         <Button type="submit">회원가입</Button>
-        {/* <Button
-          type="button"
-          buttonLabel="이메일로 회원가입"
-        /> */}
       </form>
+      <div className="mt-4 text-sm text-center">
+        계정이 있으신가요?{' '}
+        <Link href="/login" className="text-custom-light-green hover:underline">
+          로그인
+        </Link>
+      </div>
     </div>
   );
 }
