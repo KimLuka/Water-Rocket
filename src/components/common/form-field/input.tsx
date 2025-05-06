@@ -5,11 +5,12 @@ const Input = forwardRef<
   HTMLInputElement,
   InputHTMLAttributes<HTMLInputElement>
 >((props, ref) => {
-  const { id, value, type, onChange } = useInputContext();
+  const { id, value, type, onChange, description } = useInputContext();
   return (
     <input
       ref={ref}
       id={id}
+      aria-describedby={description ? `${id}-desc` : ''}
       value={value}
       type={type}
       onChange={onChange}

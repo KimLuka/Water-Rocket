@@ -132,19 +132,23 @@ body {
     background: linear-gradient(to bottom, #ffffff, #dbeafe);
   }
 
+  .input-base {
+    @apply flex w-full h-10 px-3 py-2 text-sm border rounded-md border-custom-light-gray shadow-2xs focus-visible:ring-2 focus-visible:ring-custom-light-green disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
   @media (prefers-color-scheme: dark) {
     .bg-gradient-custom {
       background: linear-gradient(to bottom, #111827, #1f2937);
     }
   }
 
-  .container {
+  /* .container {
     margin-left: auto;
     margin-right: auto;
     padding-left: 2rem;
     padding-right: 2rem;
     max-width: 100%;
-  }
+  } */
 }
 
 @layer base {
