@@ -2,11 +2,10 @@
 
 import FormField from '@/components/common/form-field';
 import Button from '@/components/ui/button';
-import { supabase } from '@/lib/supabaseClient';
+import { useLogin } from '@/hooks/useLogin';
 import { User } from '@/types/auth';
 import { RocketIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 
 export default function Login() {
@@ -16,32 +15,10 @@ export default function Login() {
     formState: { errors },
   } = useForm<User>({ mode: 'all' });
 
-  const router = useRouter();
+  const login = useLogin();
 
-  const onSubmit = async (data: User) => {
-    const { email, password } = data;
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      switch (error.code) {
-        case 'invalid_credentials':
-          alert('잘못된 이메일 또는 비밀번호입니다.');
-          break;
-        case 'email_not_verified':
-          alert('이메일을 확인해주세요.');
-          break;
-        default:
-          alert('로그인 실패: ' + (error.message || '알 수 없는 오류'));
-          break;
-      }
-    } else {
-      console.log('로그인 성공!');
-      router.push('/');
-    }
+  const onSubmit = (data: User) => {
+    login(data.email, data.password);
   };
 
   return (

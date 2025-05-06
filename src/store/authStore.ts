@@ -15,7 +15,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   removeUser: () => set({ user: null }),
 }));
 
-// ✅ 클라이언트 사이드에서만 동작하도록 분리된 훅
+// 클라이언트 사이드에서만 동작하도록 분리된 훅
 export const useAuthListener = () => {
   const setUser = useAuthStore((state) => state.setUser);
 
