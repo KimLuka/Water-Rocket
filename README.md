@@ -14,12 +14,14 @@
 
 - **Frontend:** `JavaScript(ES6+)` `TypeScript` `React` `Next.js`
 - **Backend:** `Supabase`(Auth, Database, Storage)
-- **State Management & Data Fetching** : `Zustand`
+- **State Management & Data Fetching** : `Zustand` `React Context API`
 - **Styling** : `HTML` `CSS` `TailwindCSS`
 - **Code Quality & Formatting** : `ESLint` `Prettier`
 - **Version Control & Collaboration** : `Git` `GitHub`
 
-## 📁 프로젝트 구조
+## 📁 프로젝트 구조(2025.05.06 기준)
+- 로그인, 회원가입, 메인 페이지 구현
+- 메인 페이지 반응형, 회원가입 페이지 및 버튼 컴포넌트 리팩토링 필요한 상황
 
 ```plaintext
 /public
@@ -33,8 +35,6 @@
 │   ├── page.tsx                ← 홈 페이지
 │   ├── login/page.tsx
 │   ├── signup/page.tsx
-│   ├── todos/page.tsx
-│   └── (test)/test/page.tsx    ← 테스트용 페이지
 
 ├── components/
 │   ├── auth-provider.tsx       ← SupabaseProvider 및 AuthContext
