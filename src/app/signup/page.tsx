@@ -1,19 +1,14 @@
 'use client';
 
 import Button from '@/components/ui/button';
-import FormInput from '@/components/ui/form-input';
-import { isPostgrestError } from '@/lib/errorGuards';
-import { supabase } from '@/lib/supabaseClient';
-import { isAuthError } from '@supabase/supabase-js';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { User } from '@/types/auth';
 import Link from 'next/link';
 import { RocketIcon } from 'lucide-react';
+import FormField from '@/components/common/form-field';
+import { useSignUp } from '@/hooks/useSignUp';
 // import { useEffect } from 'react';
 // import { useDebounce } from 'use-debounce';
-
-const DEFAULT_PROFILE_IMAGE_URL = '/logo/logo.svg';
 
 export default function Signup() {
   const {
@@ -71,62 +66,10 @@ export default function Signup() {
   //   checkNickname();
   // }, [debouncedNickname, setError, clearErrors]);
 
-  const router = useRouter();
+  const signUp = useSignUp();
 
-  const onSubmit = async (data: User) => {
-    const { email, nickname, password } = data;
-
-    try {
-      const { data: signUpData, error: signUpError } =
-        await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              nickname,
-              profile_image_url: DEFAULT_PROFILE_IMAGE_URL,
-            },
-          },
-        });
-
-      if (signUpError) {
-        throw new Error();
-      }
-
-      const userId = signUpData?.user?.id;
-      if (!userId) {
-        throw new Error('회원 ID가 존재하지 않습니다');
-      }
-
-      const { error: insertError } = await supabase.from('users').insert({
-        id: userId,
-        email,
-        nickname,
-        profile_image_url: DEFAULT_PROFILE_IMAGE_URL,
-        level: 1,
-        exp: 0,
-        streak: 0,
-        rockets: [],
-        achievements: {},
-      });
-
-      if (insertError) {
-        throw insertError;
-      }
-
-      console.log('회원가입 성공!');
-      router.push('/');
-    } catch (error: unknown) {
-      if (isAuthError(error)) {
-        alert(`회원가입 실패: ${error.message}`);
-      } else if (isPostgrestError(error)) {
-        alert(`DB 저장 실패: ${error.message}`);
-      } else if (error instanceof Error) {
-        alert(`기타 에러: ${error.message}`);
-      } else {
-        alert('알 수 없는 오류');
-      }
-    }
+  const onSubmit = (data: User) => {
+    signUp(data);
   };
 
   return (
@@ -139,69 +82,126 @@ export default function Signup() {
         <RocketIcon className="w-10 h-10 text-custom-light-green" />
         <span className="text-4xl font-bold">물로켓</span>
       </Link>
+
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
       >
-        <FormInput
-          inputLabel="이메일"
-          htmlFor="email"
-          type="email"
-          placeholder="이메일을 입력해주세요"
-          required
-          patternValue={/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/}
-          patternMessage="이메일 형식이 올바르지 않습니다"
-          register={register}
-          registerName="email"
-          errors={errors}
-        />
+        <div className="flex flex-col gap-2">
+          <FormField id="email">
+            <FormField.Label className="text-sm font-bold">
+              이메일
+            </FormField.Label>
+            <FormField.Input
+              placeholder="이메일을 입력해주세요"
+              type="email"
+              className="input-base"
+              {...register('email', {
+                required: '이메일은 필수 입력 항목입니다',
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: '이메일 형식이 올바르지 않습니다',
+                },
+              })}
+            />
+            <FormField.ErrorMessage
+              message={errors.email?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
+        </div>
 
-        <FormInput
-          inputLabel="닉네임"
-          htmlFor="nickname"
-          type="text"
-          placeholder="2자 이상, 12자 이하로 입력해주세요"
-          required
-          register={register}
-          registerName="nickname"
-          minLength
-          minLengthValue={2}
-          minLengthMessage="닉네임은 최소 2자 이상이어야 합니다"
-          maxLength
-          maxLengthValue={12}
-          maxLengthMessage="닉네임은 12자 이하로 입력해주세요"
-          errors={errors}
-        />
+        <div className="flex flex-col gap-2">
+          <FormField id="nickname">
+            <FormField.Label className="text-sm font-bold">
+              닉네임
+            </FormField.Label>
+            <FormField.Input
+              placeholder="2자 이상, 12자 이하로 입력해주세요"
+              type="nickname"
+              className="input-base"
+              {...register('nickname', {
+                required: '닉네임은 필수 입력 항목입니다',
+                minLength: {
+                  value: 2,
+                  message: '닉네임은 최소 2자 이상이어야 합니다.',
+                },
+                maxLength: {
+                  value: 12,
+                  message: '닉네임은 최대 10자까지 입력할 수 있습니다.',
+                },
+              })}
+            />
+            <FormField.ErrorMessage
+              message={errors.nickname?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
+        </div>
 
-        <FormInput
-          inputLabel="비밀번호"
-          htmlFor="password"
-          type="password"
-          placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
-          required
-          patternValue={/^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/}
-          patternMessage="8자 이상, 특수문자 1개 이상 포함해주세요"
-          register={register}
-          registerName="password"
-          errors={errors}
-        />
+        <div className="flex flex-col gap-2">
+          <FormField id="password">
+            <FormField.Label className="text-sm font-bold">
+              비밀번호
+            </FormField.Label>
+            <FormField.Input
+              id="password"
+              aria-describedby="password-desc"
+              placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
+              type="password"
+              className="input-base"
+              {...register('password', {
+                required: '비밀번호는 필수 입력 항목입니다',
+                pattern: {
+                  value: /^(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/,
+                  message: '8자 이상, 특수문자 1개 이상 포함해주세요',
+                },
+              })}
+            />
+            <FormField.Description
+              description="8자 이상, 특수문자 1개 이상 포함해주세요"
+              className="sr-only"
+            />
 
-        <FormInput
-          inputLabel="비밀번호 확인"
-          htmlFor="confirmPassword"
-          type="password"
-          placeholder="비밀번호를 한 번 더 입력해주세요"
-          required
-          register={register}
-          registerName="confirmPassword"
-          validate={(value) =>
-            value === watch('password') || '비밀번호가 일치하지 않습니다'
-          }
-          errors={errors}
-        />
+            <FormField.ErrorMessage
+              message={errors.password?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <FormField id="confirmPassword">
+            <FormField.Label className="text-sm font-bold">
+              비밀번호 확인
+            </FormField.Label>
+            <FormField.Input
+              id="confirmPassword"
+              aria-describedby="password-desc"
+              placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
+              type="password"
+              className="input-base"
+              {...register('confirmPassword', {
+                required: '비밀번호를 한 번 더 입력해주세요',
+                validate: (value) =>
+                  value === watch('password') || '비밀번호가 일치하지 않습니다',
+              })}
+            />
+            <FormField.Description
+              description="비밀번호를 한 번 더 입력해주세요"
+              className="sr-only"
+            />
+
+            <FormField.ErrorMessage
+              message={errors.confirmPassword?.message}
+              className="text-sm text-custom-dark-green"
+            />
+          </FormField>
+        </div>
 
         <Button type="submit">회원가입</Button>
       </form>
+
       <div className="mt-4 text-sm text-center">
         계정이 있으신가요?{' '}
         <Link href="/login" className="text-custom-light-green hover:underline">
