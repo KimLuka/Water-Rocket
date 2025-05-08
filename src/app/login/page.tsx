@@ -61,8 +61,8 @@ export default function Login() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <FormField id="email">
-            <FormField.Label htmlFor="password" className="text-sm font-bold">
+          <FormField id="password">
+            <FormField.Label className="text-sm font-bold">
               비밀번호
             </FormField.Label>
             <FormField.Input
