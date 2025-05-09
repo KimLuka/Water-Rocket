@@ -26,6 +26,7 @@ export default function OverviewSection() {
           alt="내 로켓 페이지 목업"
           width={400}
           height={520}
+          quality={100}
         />
       </div>
 
@@ -35,6 +36,7 @@ export default function OverviewSection() {
           alt="미션 페이지 목업"
           width={400}
           height={520}
+          quality={100}
         />
         <div>
           <div className="flex items-center justify-center mb-6 rounded-full h-14 w-14 bg-custom-light-green/10">
@@ -72,6 +74,7 @@ export default function OverviewSection() {
           alt="보상 페이지 목업"
           width={400}
           height={520}
+          quality={100}
         />
       </div>
     </section>

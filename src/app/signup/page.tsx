@@ -7,64 +7,14 @@ import Link from 'next/link';
 import { RocketIcon } from 'lucide-react';
 import FormField from '@/components/common/form-field';
 import { useSignUp } from '@/hooks/useSignUp';
-// import { useEffect } from 'react';
-// import { useDebounce } from 'use-debounce';
 
 export default function Signup() {
   const {
     register,
     handleSubmit,
     watch,
-    // setError,
-    // clearErrors,
     formState: { errors },
   } = useForm<User>({ mode: 'onChange' });
-
-  // const nickname = watch('nickname');
-  // const [debouncedNickname] = useDebounce(nickname, 500);
-
-  // const checkDuplicate = async (debouncedNickname: string) => {
-  //   const { data } = await supabase
-  //     .from('users')
-  //     .select('nickname')
-  //     .eq('nickname', debouncedNickname)
-  //     .single();
-
-  //   return data && data.length > 0;
-  // };
-
-  // const checkDuplicate = async (debouncedNickname: string) => {
-  //   const { data } = await supabase
-  //     .from('users')
-  //     .select('nickname')
-  //     .eq('nickname', debouncedNickname)
-  //     .single();
-
-  //   return data && data.length > 0;
-  // };
-
-  // useEffect(() => {
-  //   if (
-  //     !debouncedNickname ||
-  //     debouncedNickname.length < 2 ||
-  //     debouncedNickname.length > 12
-  //   )
-  //     return;
-
-  //   const checkNickname = async () => {
-  //     const isDuplicate = await checkDuplicate(debouncedNickname);
-
-  //     if (isDuplicate) {
-  //       setError('nickname', {
-  //         type: 'manual',
-  //         message: '이미 사용 중인 닉네임입니다',
-  //       });
-  //     } else {
-  //       clearErrors('nickname');
-  //     }
-  //   };
-  //   checkNickname();
-  // }, [debouncedNickname, setError, clearErrors]);
 
   const signUp = useSignUp();
 

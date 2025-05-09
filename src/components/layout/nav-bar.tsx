@@ -41,14 +41,25 @@ export default function NavBar() {
               {user['public']['Tables']['users']['Row']['profile_image_url']}
             </li> */}
               <li>
-                <Link href="/myProfile">마이 프로필</Link>
+                <Link href="/myProfile">
+                  <Button
+                    variant="outline"
+                    className="bg-transparent border-none dark:text-white dark:bg-transparent"
+                    size="sm"
+                  >
+                    마이 프로필
+                  </Button>
+                </Link>
               </li>
               <li>
-                {/* <Link href="/">로그아웃</Link> */}
-                <button type="button" onClick={handleLogout}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="dark:text-white dark:bg-black dark:border dark:border-custom-light-gray"
+                  onClick={handleLogout}
+                >
                   로그아웃
-                </button>
-                {/* <Button type="button" buttonLabel="로그아웃" /> */}
+                </Button>
               </li>
             </>
           ) : (
