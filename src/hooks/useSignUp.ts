@@ -3,7 +3,7 @@ import { DEFAULT_PROFILE_IMAGE_URL } from '@/constants/profile';
 import { isPostgrestError } from '@/lib/errorGuards';
 import { supabase } from '@/lib/supabaseClient';
 import { User } from '@/types/auth';
-import { isAuthError } from '@supabase/supabase-js';
+import { isAuthError, PostgrestError } from '@supabase/supabase-js';
 import { useRouter } from 'next/navigation';
 
 export function useSignUp() {
@@ -16,7 +16,7 @@ export function useSignUp() {
       const { data: signUpData, error: signUpError } = await signUp(data);
 
       if (signUpError) {
-        throw new Error();
+        throw new Error(signUpError.message || '회원가입 중 알 수 없는 오류');
       }
 
       const userId = signUpData?.user?.id;
@@ -42,14 +42,22 @@ export function useSignUp() {
 
       router.push('/');
     } catch (error: unknown) {
-      if (isAuthError(error)) {
+      if ((error as PostgrestError)?.code === '23505') {
+        const message = (error as PostgrestError).message;
+
+        if (message.includes('users_email_key')) {
+          alert('이미 등록된 이메일입니다.');
+        } else if (message.includes('users_nickname_key')) {
+          alert('이미 사용 중인 닉네임입니다.');
+        } else {
+          alert('중복된 값이 존재합니다.');
+        }
+      } else if (isAuthError(error)) {
         alert(`회원가입 실패: ${error.message}`);
       } else if (isPostgrestError(error)) {
         alert(`DB 저장 실패: ${error.message}`);
       } else if (error instanceof Error) {
-        alert(`기타 에러: ${error.message}`);
-      } else {
-        alert('알 수 없는 오류');
+        alert(error.message || '알 수 없는 오류가 발생했습니다.');
       }
     }
   };
