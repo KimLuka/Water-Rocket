@@ -25,7 +25,7 @@ export default function NavBar() {
 
   return (
     <header className="sticky top-0 z-50">
-      <nav className="flex items-center justify-between h-16 px-4 bg-transparent md:px-7 dark:bg-custom-navy">
+      <nav className="flex items-center justify-between h-16 px-4 bg-white md:px-7 dark:bg-custom-navy">
         <Link
           href="/"
           aria-label="로고, 홈페이지 이동 링크"

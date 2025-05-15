@@ -8,7 +8,7 @@ export default function CallToActionSection() {
       <p className="mb-10 text-lg font-semibold">
         망해도 돼요, 물로켓은 여러 번 쏠 수 있으니까요
       </p>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         <Button className="rounded-full button-secondary button-md">
           <AppleIcon className="w-4 h-4 mr-2" />
           <span className="font-extrabold">App Store</span>
