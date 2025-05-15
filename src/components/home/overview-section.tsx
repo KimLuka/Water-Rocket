@@ -1,4 +1,4 @@
-import { CheckIcon, RocketIcon, ShieldIcon } from 'lucide-react';
+import { RocketIcon, ShieldIcon, SquareCheckBigIcon } from 'lucide-react';
 import Image from 'next/image';
 
 export default function OverviewSection() {
@@ -7,12 +7,12 @@ export default function OverviewSection() {
       id="overview"
       className="flex flex-col items-center w-full gap-24 py-20"
     >
-      <div className="flex items-center justify-between gap-15">
-        <div>
+      <div className="flex flex-col items-center md:min-w-192 md:flex-row md:items-center md:justify-between ">
+        <div className="max-w-md px-4">
           <div className="flex items-center justify-center mb-6 rounded-full h-14 w-14 bg-custom-light-green/10">
-            <CheckIcon className="h-7 w-7 text-custom-light-green" />
+            <SquareCheckBigIcon className="h-7 w-7 text-custom-light-green" />
           </div>
-          <h2 className="mb-3 font-bold sm:text-xl md:text-2xl">할 일 관리</h2>
+          <h2 className="mb-3 text-2xl font-bold">할 일 관리</h2>
           <p className="mb-2 leading-loose text-custom-dark-gray dark:text-custom-light-gray">
             할 일을 직접 만들고, 준비물이나 장소도 함께 기록해요.
             <br />
@@ -30,7 +30,7 @@ export default function OverviewSection() {
         />
       </div>
 
-      <div className="flex items-center justify-between gap-15">
+      <div className="flex flex-col-reverse items-center md:min-w-192 md:flex-row md:items-center md:justify-between">
         <Image
           src="/images/mockup-mission.png"
           alt="미션 페이지 목업"
@@ -38,13 +38,11 @@ export default function OverviewSection() {
           height={520}
           quality={100}
         />
-        <div>
+        <div className="max-w-md px-4">
           <div className="flex items-center justify-center mb-6 rounded-full h-14 w-14 bg-custom-light-green/10">
             <RocketIcon className="h-7 w-7 text-custom-light-green" />
           </div>
-          <h2 className="mb-3 font-bold sm:text-xl md:text-2xl">
-            로켓 업그레이드
-          </h2>
+          <h2 className="mb-3 text-2xl font-bold">로켓 업그레이드</h2>
           <p className="mb-2 leading-loose text-custom-dark-gray dark:text-custom-light-gray">
             할 일을 완료하면 로켓 경험치가 쌓여요.
             <br />
@@ -55,12 +53,12 @@ export default function OverviewSection() {
         </div>
       </div>
 
-      <div className="flex items-center justify-between gap-15">
-        <div>
+      <div className="flex flex-col items-center md:min-w-192 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-md px-4">
           <div className="flex items-center justify-center mb-6 rounded-full h-14 w-14 bg-custom-light-green/10">
             <ShieldIcon className="h-7 w-7 text-custom-light-green" />
           </div>
-          <h2 className="mb-3 font-bold sm:text-xl md:text-2xl">미션 도전</h2>
+          <h2 className="mb-3 text-2xl font-bold">미션 도전</h2>
           <p className="mb-2 leading-loose text-custom-dark-gray dark:text-custom-light-gray">
             친구나 다른 유저에게 미션을 보낼 수 있어요.
             <br />
