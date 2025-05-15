@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronDown } from 'lucide-react';
-import Button from '../ui/button';
+import Button from '../common/button';
 
 export default function ScrollToOverviewButton() {
   const handleClick = () => {
@@ -10,8 +10,7 @@ export default function ScrollToOverviewButton() {
 
   return (
     <Button
-      variant="secondary"
-      className="text-sm border-none rounded-full"
+      className="border-none rounded-full button-secondary button-sm w-28.75"
       onClick={handleClick}
     >
       더 알아보기

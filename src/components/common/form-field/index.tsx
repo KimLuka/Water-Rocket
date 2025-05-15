@@ -1,35 +1,27 @@
-import { ReactNode } from 'react';
-import InputContext from './input-context';
-import { InputContextType } from './input-types';
+import { ReactNode, useState } from 'react';
 import Input from './input';
 import Label from './label';
 import Description from './description';
 import ErrorMessage from './error-message';
+import FormFieldContext from './form-field-context';
 
-interface Props extends InputContextType {
+interface FormFieldProps {
   children: ReactNode;
 }
 
-const FormField = ({
-  id,
-  value,
-  type = 'text',
-  onChange,
-  description,
-  message,
-  children,
-}: Props) => {
+const FormField = ({ children }: FormFieldProps) => {
+  const [isValidate, setIsValidate] = useState(true);
+  const providerValue = { isValidate, setIsValidate };
+
   return (
-    <InputContext.Provider
-      value={{ id, value, type, onChange, description, message }}
-    >
+    <FormFieldContext.Provider value={providerValue}>
       {children}
-    </InputContext.Provider>
+    </FormFieldContext.Provider>
   );
 };
 
-FormField.Input = Input;
 FormField.Label = Label;
+FormField.Input = Input;
 FormField.Description = Description;
 FormField.ErrorMessage = ErrorMessage;
 

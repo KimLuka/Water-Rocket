@@ -4,8 +4,8 @@ import { supabase } from '@/lib/supabaseClient';
 import { useAuthStore } from '@/store/authStore';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import Button from '../ui/button';
 import { RocketIcon } from 'lucide-react';
+import Button from '../common/button';
 
 export default function NavBar() {
   const { user, removeUser } = useAuthStore();
@@ -34,7 +34,7 @@ export default function NavBar() {
           <RocketIcon className="w-6 h-6 text-custom-light-green" />
           <span className="text-xl font-bold">물로켓</span>
         </Link>
-        <ul className="flex gap-2 font-bold text-md md:text-lg">
+        <ul className="flex gap-2 text-base font-bold md:text-lg">
           {user ? (
             <>
               {/* <li>
@@ -42,20 +42,14 @@ export default function NavBar() {
             </li> */}
               <li>
                 <Link href="/myProfile">
-                  <Button
-                    variant="outline"
-                    className="bg-transparent border-none dark:text-white dark:bg-transparent"
-                    size="sm"
-                  >
+                  <Button className="bg-transparent border-none dark:text-white dark:bg-transparent button-outline button-sm">
                     마이 프로필
                   </Button>
                 </Link>
               </li>
               <li>
                 <Button
-                  variant="outline"
-                  size="sm"
-                  className="dark:text-white dark:bg-black dark:border dark:border-custom-light-gray"
+                  className="dark:text-white dark:bg-black dark:border dark:border-custom-light-gray button-outline button-sm"
                   onClick={handleLogout}
                 >
                   로그아웃
@@ -66,22 +60,14 @@ export default function NavBar() {
             <>
               <li>
                 <Link href="/login">
-                  <Button
-                    variant="outline"
-                    className="bg-transparent border-none dark:text-white dark:bg-transparent"
-                    size="sm"
-                  >
+                  <Button className="border-none rounded-md button-primary button-sm w-18.75">
                     로그인
                   </Button>
                 </Link>
               </li>
               <li>
                 <Link href="/signup">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="dark:text-white dark:bg-black dark:border dark:border-custom-light-gray"
-                  >
+                  <Button className="rounded-md button-secondary button-sm w-18.75">
                     회원가입
                   </Button>
                 </Link>

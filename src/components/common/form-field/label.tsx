@@ -1,16 +1,9 @@
-import { LabelHTMLAttributes } from 'react';
-import { useInputContext } from './useInputContext';
+import { LabelHTMLAttributes, ReactNode } from 'react';
 
-const Label = ({
-  children,
-  ...props
-}: LabelHTMLAttributes<HTMLLabelElement>) => {
-  const { id } = useInputContext();
-  return (
-    <label htmlFor={id} {...props}>
-      {children}
-    </label>
-  );
-};
+interface LabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
+  children?: ReactNode;
+}
 
-export default Label;
+export default function Label({ children, className }: LabelProps) {
+  return <label className={className}>{children}</label>;
+}

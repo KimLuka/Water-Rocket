@@ -1,19 +1,18 @@
-import { HTMLAttributes } from 'react';
-import { useInputContext } from './useInputContext';
+import React, { HTMLAttributes, ReactNode } from 'react';
+import { useFormFieldContext } from './form-field-context';
 
 interface ErrorMessageProps extends HTMLAttributes<HTMLParagraphElement> {
-  message: string;
+  children: ReactNode;
 }
 
-const ErrorMessage = (props: ErrorMessageProps) => {
-  const context = useInputContext();
-  const message = props.message || context.message;
-
-  if (!message) return null;
+const ErrorMessage = ({ children, className }: ErrorMessageProps) => {
+  const { isValidate } = useFormFieldContext();
   return (
-    <p role="alert" {...props}>
-      {message}
-    </p>
+    isValidate && (
+      <p role="alert" className={className}>
+        {children}
+      </p>
+    )
   );
 };
 

@@ -1,7 +1,7 @@
 'use client';
 
+import Button from '@/components/common/button';
 import FormField from '@/components/common/form-field';
-import Button from '@/components/ui/button';
 import { useLogin } from '@/hooks/useLogin';
 import { User } from '@/types/auth';
 import { RocketIcon } from 'lucide-react';
@@ -34,17 +34,18 @@ export default function Login() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
+        className="flex flex-col justify-center gap-4 w-75 md:w-100"
       >
         <div className="flex flex-col gap-2">
-          <FormField id="email">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label htmlFor="email" className="text-sm font-bold">
               이메일
             </FormField.Label>
             <FormField.Input
+              id="email"
               placeholder="이메일을 입력해주세요"
               type="email"
-              className="input-base"
+              className="input-md input-primary"
               {...register('email', {
                 required: '이메일은 필수 입력 항목입니다',
                 pattern: {
@@ -53,16 +54,15 @@ export default function Login() {
                 },
               })}
             />
-            <FormField.ErrorMessage
-              message={errors.email?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.email?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
 
         <div className="flex flex-col gap-2">
-          <FormField id="password">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label htmlFor="password" className="text-sm font-bold">
               비밀번호
             </FormField.Label>
             <FormField.Input
@@ -70,7 +70,7 @@ export default function Login() {
               aria-describedby="password-desc"
               placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
               type="password"
-              className="input-base"
+              className="input-md input-primary"
               {...register('password', {
                 required: '비밀번호는 필수 입력 항목입니다',
                 pattern: {
@@ -79,18 +79,18 @@ export default function Login() {
                 },
               })}
             />
-            <FormField.Description
-              description="8자 이상, 특수문자 1개 이상 포함해주세요"
-              className="sr-only"
-            />
+            <FormField.Description id="password-desc">
+              8자 이상, 특수문자 1개 이상 포함해주세요
+            </FormField.Description>
 
-            <FormField.ErrorMessage
-              message={errors.password?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.password?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
-        <Button type="submit">로그인</Button>
+        <Button type="submit" className="rounded-md button-md button-primary">
+          로그인
+        </Button>
       </form>
 
       <div className="mt-4 text-sm text-center">

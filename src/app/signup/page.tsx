@@ -1,12 +1,12 @@
 'use client';
 
-import Button from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
 import { User } from '@/types/auth';
 import Link from 'next/link';
 import { RocketIcon } from 'lucide-react';
 import FormField from '@/components/common/form-field';
 import { useSignUp } from '@/hooks/useSignUp';
+import Button from '@/components/common/button';
 
 export default function Signup() {
   const {
@@ -35,17 +35,18 @@ export default function Signup() {
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center gap-4 w-75 md:gap-6 md:w-120"
+        className="flex flex-col justify-center gap-4 w-75 md:w-100"
       >
         <div className="flex flex-col gap-2">
-          <FormField id="email">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label htmlFor="email" className="text-sm font-bold">
               이메일
             </FormField.Label>
             <FormField.Input
+              id="email"
               placeholder="이메일을 입력해주세요"
               type="email"
-              className="input-base"
+              className="input-md input-primary"
               {...register('email', {
                 required: '이메일은 필수 입력 항목입니다',
                 pattern: {
@@ -54,22 +55,22 @@ export default function Signup() {
                 },
               })}
             />
-            <FormField.ErrorMessage
-              message={errors.email?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.email?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
 
         <div className="flex flex-col gap-2">
-          <FormField id="nickname">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label htmlFor="nickname" className="text-sm font-bold">
               닉네임
             </FormField.Label>
             <FormField.Input
+              id="nickname"
               placeholder="2자 이상, 12자 이하로 입력해주세요"
               type="nickname"
-              className="input-base"
+              className="input-md input-primary"
               {...register('nickname', {
                 required: '닉네임은 필수 입력 항목입니다',
                 minLength: {
@@ -82,16 +83,15 @@ export default function Signup() {
                 },
               })}
             />
-            <FormField.ErrorMessage
-              message={errors.nickname?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.nickname?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
 
         <div className="flex flex-col gap-2">
-          <FormField id="password">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label htmlFor="password" className="text-sm font-bold">
               비밀번호
             </FormField.Label>
             <FormField.Input
@@ -99,7 +99,7 @@ export default function Signup() {
               aria-describedby="password-desc"
               placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
               type="password"
-              className="input-base"
+              className="input-md input-primary"
               {...register('password', {
                 required: '비밀번호는 필수 입력 항목입니다',
                 pattern: {
@@ -108,21 +108,22 @@ export default function Signup() {
                 },
               })}
             />
-            <FormField.Description
-              description="8자 이상, 특수문자 1개 이상 포함해주세요"
-              className="sr-only"
-            />
+            <FormField.Description id="password-desc">
+              8자 이상, 특수문자 1개 이상 포함해주세요
+            </FormField.Description>
 
-            <FormField.ErrorMessage
-              message={errors.password?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.password?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
 
         <div className="flex flex-col gap-2">
-          <FormField id="confirmPassword">
-            <FormField.Label className="text-sm font-bold">
+          <FormField>
+            <FormField.Label
+              htmlFor="confirmPassword"
+              className="text-sm font-bold"
+            >
               비밀번호 확인
             </FormField.Label>
             <FormField.Input
@@ -130,26 +131,26 @@ export default function Signup() {
               aria-describedby="password-desc"
               placeholder="8자 이상, 특수문자 1개 이상 포함해주세요"
               type="password"
-              className="input-base"
+              className="input-md input-primary"
               {...register('confirmPassword', {
                 required: '비밀번호를 한 번 더 입력해주세요',
                 validate: (value) =>
                   value === watch('password') || '비밀번호가 일치하지 않습니다',
               })}
             />
-            <FormField.Description
-              description="비밀번호를 한 번 더 입력해주세요"
-              className="sr-only"
-            />
+            <FormField.Description id="confirmPassword-desc">
+              비밀번호를 한 번 더 입력해주세요
+            </FormField.Description>
 
-            <FormField.ErrorMessage
-              message={errors.confirmPassword?.message}
-              className="text-sm text-custom-dark-green"
-            />
+            <FormField.ErrorMessage className="text-sm text-custom-dark-green">
+              {errors.confirmPassword?.message}
+            </FormField.ErrorMessage>
           </FormField>
         </div>
 
-        <Button type="submit">회원가입</Button>
+        <Button type="submit" className="rounded-md button-md button-primary">
+          회원가입
+        </Button>
       </form>
 
       <div className="mt-4 text-sm text-center">
