@@ -1,18 +1,11 @@
-import { HTMLAttributes } from 'react';
-import { useInputContext } from './useInputContext';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface DescriptionProps extends HTMLAttributes<HTMLParagraphElement> {
-  description: string;
+  children: ReactNode;
 }
 
-const Description = (props: DescriptionProps) => {
-  const { id, description } = useInputContext();
-  if (!description) return null;
-  return (
-    <p id={`${id}-desc`} {...props}>
-      {description}
-    </p>
-  );
+const Description = ({ className, children }: DescriptionProps) => {
+  return <p className={`sr-only ${className ?? ''}`}>{children}</p>;
 };
 
 export default Description;

@@ -1,5 +1,5 @@
 import { AppleIcon, MonitorIcon, PlayIcon } from 'lucide-react';
-import Button from '../ui/button';
+import Button from '../common/button';
 
 export default function CallToActionSection() {
   return (
@@ -9,15 +9,15 @@ export default function CallToActionSection() {
         망해도 돼요, 물로켓은 여러 번 쏠 수 있으니까요
       </p>
       <div className="flex gap-4">
-        <Button variant="secondary" className="flex rounded-full">
+        <Button className="rounded-full button-secondary button-md">
           <AppleIcon className="w-4 h-4 mr-2" />
           <span className="font-extrabold">App Store</span>
         </Button>
-        <Button variant="secondary" className="flex rounded-full">
+        <Button className="rounded-full button-secondary button-md">
           <PlayIcon className="w-4 h-4 mr-2" />
           <span className="font-extrabold">Google Play</span>
         </Button>
-        <Button variant="secondary" className="flex rounded-full">
+        <Button className="rounded-full button-secondary button-md">
           <MonitorIcon className="w-4 h-4 mr-2" />
           <span className="font-extrabold">PC 버전 이용하기</span>
         </Button>

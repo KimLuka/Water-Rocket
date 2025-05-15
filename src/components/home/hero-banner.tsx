@@ -1,4 +1,5 @@
-import Button from '../ui/button';
+import Link from 'next/link';
+import Button from '../common/button';
 import FloatingIcons from './floating-icons';
 import ScrollToOverviewButton from './scroll-to-overview-button';
 
@@ -14,7 +15,11 @@ export default function HeroBanner() {
           </h1>
 
           <div className="z-10 flex gap-4">
-            <Button className="text-sm rounded-full">바로 시작하기</Button>
+            <Link href="/login">
+              <Button className="rounded-full button-sm button-primary w-28.75">
+                바로 시작하기
+              </Button>
+            </Link>
             <ScrollToOverviewButton />
           </div>
         </div>
